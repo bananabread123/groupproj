@@ -12,7 +12,7 @@ import java.util.Date;
   JFrame window = new JFrame("TO DO LIST");
   JPanel content = new JPanel();
 
-  content.setLayout(new BorderLayout());
+  content.setLayout(new GridLayout(1,3));
   JLabel login_instruct = new JLabel("<html><h1>ACCOUNT LOGIN</h1></html>",SwingConstants.CENTER);
   JLabel user1 = new JLabel("<html><h1>USERNAME</h1></html>");
   JLabel pass1 = new JLabel("<html><h1>PASSWORD</h1></html>");
@@ -41,12 +41,13 @@ import java.util.Date;
   JLabel memo_text = new JLabel("");
   JButton done = new JButton("<html><h1>I FINISHED EVERYTHING!</h1></html>");
   JLabel todo = new JLabel("<html><h1>TO DO LIST</h1></html>",SwingConstants.CENTER);
-
+  JLabel blank5 = new JLabel("");
+  JLabel blank6 = new JLabel("");
   JPanel signin = new JPanel();
   signin.setLayout(new GridLayout(5, 2));
-  signin.setBackground(Color.BLUE);
+  signin.setBackground(new Color(230,240,250));
   signin.add(login_instruct);
-  signin.add(todo);
+  signin.add(blank5);
   signin.add(user1);
   signin.add(u1);
   signin.add(pass1);
@@ -54,11 +55,11 @@ import java.util.Date;
   signin.add(login);
   signin.add(clear1);
   signin.add(logresult1);
-  content.add(signin, BorderLayout.PAGE_START);
+  content.add(signin);
 
   JPanel signup = new JPanel();
   signup.setLayout(new GridLayout(6, 2));
-  signup.setBackground(Color.BLUE);
+  signup.setBackground(new Color(200,240,250));
   signup.add(newacct);
   signup.add(error);
   signup.add(about);
@@ -70,16 +71,23 @@ import java.util.Date;
   signup.add(create);
   signup.add(clear2);
   signup.add(logresult2);
-  content.add(signup, BorderLayout.PAGE_END);
+  content.add(signup);
 
   JPanel play = new JPanel();
-  play.setLayout(new GridLayout(2,2));
-  play.setBackground(Color.BLUE);
-  play.add(text);
-  play.add(memo_text);
-  play.add(enter);
-  play.add(done);
-  content.add(play, BorderLayout.CENTER);
+  play.setLayout(new BorderLayout());
+  play.setBackground(new Color(230,240,250));
+  play.add(todo,BorderLayout.PAGE_START);
+  JPanel center = new JPanel();
+  center.setLayout(new GridLayout(1,2));
+  center.add(text);
+  center.add(memo_text);
+  play.add(center,BorderLayout.CENTER);
+  JPanel end = new JPanel();
+  end.setLayout(new GridLayout(1,2));
+  end.add(enter);
+  end.add(done);
+  play.add(end,BorderLayout.PAGE_END);
+  content.add(play);
   Data.init();
 
   clear1.addActionListener(new ActionListener() {
@@ -108,7 +116,7 @@ import java.util.Date;
      found = "Login succesful";
      logresult1.setText(found);
      words = Data.readFile(username, password);
-     memo_text.setText("<html>"+words+"</html>");
+     memo_text.setText("<html>"+words+"</html>");/////////////////
      curr_user=username;
      curr_pass=password;
     } else {
@@ -153,7 +161,9 @@ import java.util.Date;
   window.setContentPane(content);
   window.pack();
   window.setLocation(100, 100);
+  window.setSize(1200,600);
   window.setVisible(true);
+  window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
  }
 
