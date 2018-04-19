@@ -148,6 +148,8 @@ import java.util.Date;
    public void actionPerformed(ActionEvent event) {
      String memo = text.getText();
      Data.writeResults(memo, curr_user, curr_pass);
+     String words = Data.readFile(curr_user, curr_pass);
+     memo_text.setText("<html>"+words+"</html>");
     }
   });
 
