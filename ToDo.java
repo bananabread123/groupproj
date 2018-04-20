@@ -74,6 +74,10 @@ import javax.swing.event.*;
   String[] colorStrings = {"Black", "Red","Blue", "Green"};
   SpinnerListModel colorModel = new SpinnerListModel(colorStrings);
   JSpinner spinner = new JSpinner(colorModel);
+  String[] fontStrings = { "Times New Roman", "Helvetica", "Comic Sans MS", "Marker Felt", "Lucida" };
+  JComboBox fontList = new JComboBox(fontStrings);
+  fontList.setSelectedIndex(2);
+  end.add(fontList);
   end.add(spinner);
   end.add(blank6);
   end.add(enter);
@@ -124,6 +128,39 @@ import javax.swing.event.*;
       }
     });
 
+    fontList.addActionListener(new ActionListener(){
+      @Override
+    public void actionPerformed(ActionEvent e) {
+        JComboBox cb = (JComboBox)e.getSource();
+        String fontName = (String)cb.getSelectedItem();
+
+        if(fontName.equals("Times New Roman")){
+          String words = Data.readFile(curr_user, curr_pass);
+          memo_text.setText("<html>"+words+"</h1></html> ");
+          memo_text.setFont(new Font("Times New Roman", Font.PLAIN,14));
+        }
+        if(fontName.equals("Helvetica")){
+          String words = Data.readFile(curr_user, curr_pass);
+          memo_text.setText("<html>"+words+"</h1></html>");
+          memo_text.setFont(new Font("Helvetica", Font.PLAIN,14));
+        }
+        if(fontName.equals("Comic Sans MS")){
+          String words = Data.readFile(curr_user, curr_pass);
+          memo_text.setText("<html>"+words+"</h1></html>");
+          memo_text.setFont(new Font("Comic Sans MS", Font.PLAIN,14));
+        }
+        if(fontName.equals("Marker Felt")){
+          String words = Data.readFile(curr_user, curr_pass);
+          memo_text.setText("<html>"+words+"</html>");
+          memo_text.setFont(new Font("Marker Felt", Font.PLAIN,14));
+        }
+        if(fontName.equals("Lucida")){
+          String words = Data.readFile(curr_user, curr_pass);
+          memo_text.setText("<html>"+words+"</html>");
+          memo_text.setFont(new Font("Lucida Handwriting", Font.PLAIN,14));
+        }
+      }
+    });
 
   clear1.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent event) {
