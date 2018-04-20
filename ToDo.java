@@ -3,10 +3,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.Timer;
 import java.util.Date;
+import java.util.*;
+import javax.swing.event.*;
 
  public class ToDo extends JPanel {
  private static String curr_user;
  private static String curr_pass;
+
  public static void main(String[] args) {
 
   JFrame window = new JFrame("TO DO LIST");
@@ -28,10 +31,7 @@ import java.util.Date;
   JLabel newacct = new JLabel("<html><h1>CREATE AN ACCOUNT</h1></html>",SwingConstants.CENTER);
   JButton create = new JButton("<html><h1>CREATE</h1></html>");
   JLabel about = new JLabel("<html><h1>USERNAME AND PASSWORD MUST BE 5-8 LETTERS<html><h1>");
-  JLabel blank1 = new JLabel("");
-  JLabel blank2 = new JLabel("");
   JLabel blank3 = new JLabel("");
-	JLabel blank4 = new JLabel("");
   JTextArea text = new JTextArea(50, 70);
   JButton enter = new JButton("<html><h1>ENTER</h1></html>");
   JLabel logresult1 = new JLabel("");
@@ -70,7 +70,12 @@ import java.util.Date;
   center.add(memo_text);
   play.add(center,BorderLayout.CENTER);
   JPanel end = new JPanel();
-  end.setLayout(new GridLayout(1,2));
+  end.setLayout(new GridLayout(2,2));
+  String[] colorStrings = {"Black", "Red","Blue", "Green"};
+  SpinnerListModel colorModel = new SpinnerListModel(colorStrings);
+  JSpinner spinner = new JSpinner(colorModel);
+  end.add(spinner);
+  end.add(blank6);
   end.add(enter);
   end.add(done);
   play.add(end,BorderLayout.PAGE_END);
@@ -90,6 +95,34 @@ import java.util.Date;
   signin.add(clear1);
   signin.add(logresult1);
   content.add(signin);
+
+  spinner.addChangeListener(new ChangeListener(){
+      @Override
+      public void stateChanged(ChangeEvent e){
+        JSpinner spinner = (JSpinner) e.getSource();
+        String listColor = (String)spinner.getValue();
+        if(listColor.equals("Black")){
+          String words = Data.readFile(curr_user, curr_pass);
+          memo_text.setText("<html>"+words+"</h1></html> ");
+          memo_text.setForeground(Color.BLACK);
+        }
+        if(listColor.equals("Red")){
+          String words = Data.readFile(curr_user, curr_pass);
+          memo_text.setText("<html>"+words+"</h1></html>");
+          memo_text.setForeground(Color.RED);
+        }
+        if(listColor.equals("Blue")){
+          String words = Data.readFile(curr_user, curr_pass);
+          memo_text.setText("<html>"+words+"</h1></html>");
+          memo_text.setForeground(Color.BLUE);
+        }
+        if(listColor.equals("Green")){
+          String words = Data.readFile(curr_user, curr_pass);
+          memo_text.setText("<html>"+words+"</html>");
+          memo_text.setForeground(Color.GREEN);
+        }
+      }
+    });
 
 
   clear1.addActionListener(new ActionListener() {
@@ -118,7 +151,7 @@ import java.util.Date;
      found = "Login succesful";
      logresult1.setText(found);
      words = Data.readFile(username, password);
-     memo_text.setText("<html>"+words+"</html>");/////////////////
+     memo_text.setText("<html>"+words+"</h1></html>");
      curr_user=username;
      curr_pass=password;
     } else {
@@ -151,7 +184,7 @@ import java.util.Date;
      String memo = text.getText();
      Data.writeResults(memo, curr_user, curr_pass);
      String words = Data.readFile(curr_user, curr_pass);
-     memo_text.setText("<html>"+words+"</html>");
+     memo_text.setText("<html>"+words+"</h1></html>");
     }
   });
 
