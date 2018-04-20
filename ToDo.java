@@ -43,23 +43,10 @@ import java.util.Date;
   JLabel todo = new JLabel("<html><h1>TO DO LIST</h1></html>",SwingConstants.CENTER);
   JLabel blank5 = new JLabel("");
   JLabel blank6 = new JLabel("");
-  JPanel signin = new JPanel();
-  signin.setLayout(new GridLayout(5, 2));
-  signin.setBackground(new Color(230,240,250));
-  signin.add(login_instruct);
-  signin.add(blank5);
-  signin.add(user1);
-  signin.add(u1);
-  signin.add(pass1);
-  signin.add(p);
-  signin.add(login);
-  signin.add(clear1);
-  signin.add(logresult1);
-  content.add(signin);
 
   JPanel signup = new JPanel();
   signup.setLayout(new GridLayout(6, 2));
-  signup.setBackground(new Color(200,240,250));
+  signup.setBackground(new Color(230,240,250));
   signup.add(newacct);
   signup.add(error);
   signup.add(about);
@@ -75,7 +62,7 @@ import java.util.Date;
 
   JPanel play = new JPanel();
   play.setLayout(new BorderLayout());
-  play.setBackground(new Color(230,240,250));
+  play.setBackground(new Color(200,240,250));
   play.add(todo,BorderLayout.PAGE_START);
   JPanel center = new JPanel();
   center.setLayout(new GridLayout(1,2));
@@ -89,6 +76,21 @@ import java.util.Date;
   play.add(end,BorderLayout.PAGE_END);
   content.add(play);
   Data.init();
+
+  JPanel signin = new JPanel();
+  signin.setLayout(new GridLayout(5, 2));
+  signin.setBackground(new Color(230,240,250));
+  signin.add(login_instruct);
+  signin.add(blank5);
+  signin.add(user1);
+  signin.add(u1);
+  signin.add(pass1);
+  signin.add(p);
+  signin.add(login);
+  signin.add(clear1);
+  signin.add(logresult1);
+  content.add(signin);
+
 
   clear1.addActionListener(new ActionListener() {
    public void actionPerformed(ActionEvent event) {
