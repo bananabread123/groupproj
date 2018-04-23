@@ -32,7 +32,7 @@ import javax.swing.event.*;
   JButton create = new JButton("<html><h1>CREATE</h1></html>");
   JLabel about = new JLabel("<html><h1>USERNAME AND PASSWORD MUST BE 5-8 LETTERS<html><h1>");
   JLabel blank3 = new JLabel("");
-  JTextField text = new JTextField("enter stuff here");
+  JTextField text = new JTextField("");
   JButton enter = new JButton("<html><h1>ENTER</h1></html>");
   JLabel logresult1 = new JLabel("");
   JLabel logresult2 = new JLabel("");
