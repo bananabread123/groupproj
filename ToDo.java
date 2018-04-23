@@ -32,7 +32,7 @@ import javax.swing.event.*;
   JButton create = new JButton("<html><h1>CREATE</h1></html>");
   JLabel about = new JLabel("<html><h1>USERNAME AND PASSWORD MUST BE 5-8 LETTERS<html><h1>");
   JLabel blank3 = new JLabel("");
-  JTextArea text = new JTextArea(50, 70);
+  JTextField text = new JTextField("enter stuff here");
   JButton enter = new JButton("<html><h1>ENTER</h1></html>");
   JLabel logresult1 = new JLabel("");
   JLabel logresult2 = new JLabel("");
@@ -67,8 +67,13 @@ import javax.swing.event.*;
   JPanel center = new JPanel();
   center.setLayout(new GridLayout(1,2));
   center.add(text);
+  // put scrolling functionality for long lists -- so isn't always present -Lo
+  JScrollPane scroll = new JScrollPane(center);
+  scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
   center.add(memo_text);
-  play.add(center,BorderLayout.CENTER);
+  play.add(scroll,BorderLayout.CENTER); // do not change that it is scroll and not center in param
+                                        // center is added to scroll so it will work -Lo
+
   JPanel end = new JPanel();
   end.setLayout(new GridLayout(2,2));
   String[] colorStrings = {"Black", "Red","Blue", "Green"};
